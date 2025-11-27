@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "466415161876",
+    "project_id": "mentalwellnesstips-af69d",
+    "storage_bucket": "mentalwellnesstips-af69d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:466415161876:android:c3fef3a4dd4f81f863cd01",
+        "android_client_info": {
+          "package_name": "com.example.mental_wellness_tips1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGN3Xf1UkFAB1mioNxYVaBL6RPeh_-Rk8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
