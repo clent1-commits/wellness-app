@@ -4,8 +4,6 @@ import 'firebase_options.dart';
 import 'theme/app_theme.dart'; // Custom theme
 import 'screens/login_screen.dart';
 import 'screens/home_screen.dart';
-import 'screens/mood_tracker_screen.dart';
-import 'screens/favorites_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 void main() async {
@@ -50,58 +48,16 @@ class MentalWellnessTips extends StatelessWidget {
   }
 }
 
-// Main app with bottom navigation
-class MainNavigationScreen extends StatefulWidget {
+// Main app WITHOUT bottom navigation and app bar
+class MainNavigationScreen extends StatelessWidget {
   const MainNavigationScreen({super.key});
-
-  @override
-  _MainNavigationScreenState createState() => _MainNavigationScreenState();
-}
-
-class _MainNavigationScreenState extends State<MainNavigationScreen> {
-  int _selectedIndex = 0;
-
-  final List<Widget> _screens =  [
-    HomeScreen(),
-    MoodTrackerScreen(),
-    FavoritesScreen(),
-  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Mental Wellness Tips")),
-      body: _screens[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.deepPurple,
-        unselectedItemColor: Colors.grey,
-        backgroundColor: Colors.white,
-        type: BottomNavigationBarType.fixed,
-        onTap: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Home",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.lightbulb),
-            label: "Tips",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.mood),
-            label: "Mood",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: "Favorites",
-          ),
-        ],
-      ),
+      // No AppBar here
+      body: HomeScreen(), // Just show the HomeScreen directly
+      // No bottomNavigationBar here
     );
   }
 }
