@@ -40,13 +40,27 @@ class MentalWellnessTips extends StatelessWidget {
             return LoginScreen();
           }
 
-          // Logged in → show main app
-          return const MainNavigationScreen();
+          // Logged in → show main app WITHOUT navigation buttons
+          return const MainScreen();
         },
       ),
     );
   }
 }
+
+class MainScreen extends StatelessWidget {
+  const MainScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+      // No AppBar
+      body: HomeScreen(), // Just show the home screen
+      // No bottomNavigationBar
+    );
+  }
+}
+
 
 // Main app WITHOUT bottom navigation and app bar
 class MainNavigationScreen extends StatelessWidget {
