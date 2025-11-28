@@ -113,19 +113,19 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         child: SafeArea(
-          child: Stack(
+          child: Column(
             children: [
-              SingleChildScrollView(
-                padding: EdgeInsets.only(bottom: 140),
-                child: Padding(
+              // Expanded scrollable content
+              Expanded(
+                child: SingleChildScrollView(
                   padding: EdgeInsets.all(16),
                   child: Column(
                     children: [
                       Align(
                         alignment: Alignment.centerRight,
                         child: IconButton(
-                          icon: Icon(Icons.settings,
-                              color: Colors.white, size: 28),
+                          icon:
+                          Icon(Icons.settings, color: Colors.white, size: 28),
                           onPressed: () {
                             Navigator.push(
                               context,
@@ -139,8 +139,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       ClipOval(
                         child: Image.asset(
                           "assets/images/logo.jpg",
-                          width: screenWidth * 0.08,
-                          height: screenWidth * 0.08,
+                          width: screenWidth * 0.15,
+                          height: screenWidth * 0.15,
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -165,16 +165,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 3),
+                      SizedBox(height: 8),
                       Container(
-                        width: screenWidth * 0.90,
+                        width: double.infinity,
                         padding: EdgeInsets.all(16),
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
-                            colors: [
-                              Colors.purple.shade700,
-                              Colors.purple.shade300,
-                            ],
+                            colors: [Colors.purple.shade700, Colors.purple.shade300],
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                           ),
@@ -230,10 +227,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-              Positioned(
-                bottom: 10,
-                left: 0,
-                right: 0,
+              // Bottom navigation
+              Padding(
+                padding: const EdgeInsets.only(bottom: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
