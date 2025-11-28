@@ -24,7 +24,6 @@ class MentalWellnessTips extends StatelessWidget {
       theme: AppTheme.purpleMindfulnessTheme,
       debugShowCheckedModeBanner: false,
 
-      // Listen to auth state changes
       home: StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
@@ -40,38 +39,10 @@ class MentalWellnessTips extends StatelessWidget {
             return LoginScreen();
           }
 
-          // Logged in → show main app WITHOUT navigation buttons
-          return const MainScreen();
+          // Logged in → show HomeScreen directly (no app bar, no bottom nav)
+          return HomeScreen();
         },
       ),
-    );
-  }
-}
-
-class MainScreen extends StatelessWidget {
-  const MainScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return  Scaffold(
-      // No AppBar
-      body: HomeScreen(), // Just show the home screen
-      // No bottomNavigationBar
-    );
-  }
-}
-
-
-// Main app WITHOUT bottom navigation and app bar
-class MainNavigationScreen extends StatelessWidget {
-  const MainNavigationScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      // No AppBar here
-      body: HomeScreen(), // Just show the HomeScreen directly
-      // No bottomNavigationBar here
     );
   }
 }
