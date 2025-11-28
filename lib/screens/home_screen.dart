@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  /// Bottom nav circle buttons with breathing effect
+  // Bottom nav circle buttons with breathing effect
   Widget _navCircle(String label, IconData icon, Widget page) {
     return GestureDetector(
       onTap: () {
@@ -102,9 +102,12 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       body: Container(
+        width: double.infinity,
+        height: double.infinity,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [Colors.purple[700]!, Colors.white],
@@ -115,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: SafeArea(
           child: Column(
             children: [
-              // Expanded scrollable content
+              // Scrollable main content
               Expanded(
                 child: SingleChildScrollView(
                   padding: EdgeInsets.all(16),
@@ -124,50 +127,46 @@ class _HomeScreenState extends State<HomeScreen> {
                       Align(
                         alignment: Alignment.centerRight,
                         child: IconButton(
-                          icon:
-                          Icon(Icons.settings, color: Colors.white, size: 28),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) => SettingsScreen(),
-                              ),
-                            );
-                          },
+                          icon: Icon(Icons.settings, color: Colors.white, size: 28),
+                          onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (_) => SettingsScreen()),
+                          ),
                         ),
                       ),
                       ClipOval(
                         child: Image.asset(
                           "assets/images/logo.jpg",
-                          width: screenWidth * 0.15,
-                          height: screenWidth * 0.15,
+                          width: screenWidth * 0.2,
+                          height: screenWidth * 0.2,
                           fit: BoxFit.cover,
                         ),
                       ),
-                      SizedBox(height: 10),
+                      SizedBox(height: 12),
                       Text(
                         "Mental Wellness App",
                         style: TextStyle(
-                          fontSize: 24,
+                          fontSize: 26,
                           color: Colors.purple[700],
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 30),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Your Daily Wellness Tip",
-                          style: TextStyle(
-                            fontSize: 15,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
+                      SizedBox(height: 20),
+                      Text(
+                        "Your Daily Wellness Tip",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 8),
+                      SizedBox(height: 12),
+                      // Tip card
                       Container(
                         width: double.infinity,
+                        constraints: BoxConstraints(
+                          minHeight: screenHeight * 0.25,
+                        ),
                         padding: EdgeInsets.all(16),
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
@@ -185,19 +184,16 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                         child: _loading
-                            ? Center(
-                          child: CircularProgressIndicator(
-                            color: Colors.white,
-                          ),
-                        )
+                            ? Center(child: CircularProgressIndicator(color: Colors.white))
                             : Column(
+                          mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
                               _currentTip?['title'] ?? "",
                               style: TextStyle(
                                 fontSize: 18,
-                                color: Colors.white,
                                 fontWeight: FontWeight.bold,
+                                color: Colors.white,
                               ),
                               textAlign: TextAlign.center,
                             ),
@@ -213,7 +209,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                       ),
-                      SizedBox(height: 15),
+                      SizedBox(height: 16),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -222,7 +218,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           _actionButton("New Tip", _newTip),
                         ],
                       ),
-                      SizedBox(height: 40),
+                      SizedBox(height: 20),
                     ],
                   ),
                 ),
@@ -233,8 +229,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    _navCircle(
-                        "Quotes", Icons.format_quote, MotivationalQuotesScreen()),
+                    _navCircle("Quotes", Icons.format_quote, MotivationalQuotesScreen()),
                     _navCircle("Mood", Icons.mood, MoodTrackerScreen()),
                     _navCircle("Exercise", Icons.spa, ExercisesScreen()),
                     _navCircle("Favorites", Icons.favorite, FavoritesScreen()),
@@ -249,7 +244,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-/// BreathingCircle Widget (only for the circle, not the card)
+// BreathingCircle Widget
 class BreathingCircle extends StatefulWidget {
   final Widget child;
   const BreathingCircle({required this.child});
